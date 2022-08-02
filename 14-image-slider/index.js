@@ -26,35 +26,35 @@ prev.addEventListener("click", handlePrevClicked);
 
 // 是否自动播放
 if (autoPlay) {
-  setInterval(forward ? handleNextClicked : handlePrevClicked, interval);
+    setInterval(forward ? handleNextClicked : handlePrevClicked, interval);
 }
 
 function handleNextClicked() {
-  //当前幻灯片
-  let current = slides[currentIndex];
-  // 去掉当前幻灯片的current属性
-  current.classList.remove("current");
+    //当前幻灯片
+    let current = slides[currentIndex];
+    // 去掉当前幻灯片的current属性
+    current.classList.remove("current");
 
-  //移动到下一张幻灯片，如果没有，则从第一张开始
-  currentIndex++;
-  if (currentIndex >= slides.length) {
-    currentIndex = 0;
-  }
-  // 给下一张幻灯片加上current class
-  slides[currentIndex].classList.add("current");
+    //移动到下一张幻灯片，如果没有，则从第一张开始
+    currentIndex++;
+    if (currentIndex >= slides.length) {
+        currentIndex = 0;
+    }
+    // 给下一张幻灯片加上current class
+    slides[currentIndex].classList.add("current");
 }
 
 function handlePrevClicked() {
-  //当前幻灯片
-  let current = slides[currentIndex];
-  // 去掉当前幻灯片的current属性
-  current.classList.remove("current");
+    //当前幻灯片
+    let current = slides[currentIndex];
+    // 去掉当前幻灯片的current属性
+    current.classList.remove("current");
 
-  //移动到上一张幻灯片，如果没有，则从最后一张开始
-  currentIndex--;
-  if (currentIndex < 0) {
-    currentIndex = slides.length - 1;
-  }
-  // 给下一张幻灯片加上current class
-  slides[currentIndex].classList.add("current");
+    //移动到上一张幻灯片，如果没有，则从最后一张开始
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = slides.length - 1;
+    }
+    // 给下一张幻灯片加上current class
+    slides[currentIndex].classList.add("current");
 }
