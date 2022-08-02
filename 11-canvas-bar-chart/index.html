@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <style type="text/css">
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      main {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: #e0e3ed;
-      }
-      canvas {
-        border-radius: 8px;
-        box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
-      }
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #e0e3ed;
+        }
+
+        canvas {
+            border-radius: 8px;
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+        }
     </style>
     <title>Canvs 实现柱状图</title>
-  </head>
-  <body onload="draw();">
-    <main>
-      <canvas width="600" height="300" id="bar-chart"></canvas>
-    </main>
+</head>
+<body onload="draw();">
+<main>
+    <canvas width="600" height="300" id="bar-chart"></canvas>
+</main>
 
-    <script type="text/javascript">
-      // 月份
-      const months = [
+<script type="text/javascript">
+    // 月份
+    const months = [
         "一月",
         "二月",
         "三月",
@@ -41,13 +43,13 @@
         "七月",
         "八月",
         "九月"
-      ];
+    ];
 
-      // function init() {
-      //   window.requestAnimationFrame(draw);
-      // }
+    // function init() {
+    //   window.requestAnimationFrame(draw);
+    // }
 
-      function draw() {
+    function draw() {
         var canvas = document.getElementById("bar-chart");
         var ctx = canvas.getContext("2d");
 
@@ -81,33 +83,33 @@
         let y = cHeight / 2;
 
         for (let i = 0; i < 9; i++) {
-          // 柱子上半部分高度，随机产生[minHeight, maxHeight]区间的数字
-          let height1 = Math.floor(
-            Math.random() * (maxHeight - minHeight + 1) + minHeight
-          );
-          // 柱子下半部分高度，随机产生[minHeight, maxHeight]区间的数字
-          let height2 = Math.floor(
-            Math.random() * (maxHeight - minHeight + 1) + minHeight
-          );
+            // 柱子上半部分高度，随机产生[minHeight, maxHeight]区间的数字
+            let height1 = Math.floor(
+                Math.random() * (maxHeight - minHeight + 1) + minHeight
+            );
+            // 柱子下半部分高度，随机产生[minHeight, maxHeight]区间的数字
+            let height2 = Math.floor(
+                Math.random() * (maxHeight - minHeight + 1) + minHeight
+            );
 
-          // 计算每个柱子起始x坐标的位置
-          let x = padding + (barGap + width) * i;
-          // 画柱图
-          drawBar(ctx, x, y, width, height1, height2, radius);
+            // 计算每个柱子起始x坐标的位置
+            let x = padding + (barGap + width) * i;
+            // 画柱图
+            drawBar(ctx, x, y, width, height1, height2, radius);
 
-          // 画月份文字
-          ctx.fillStyle = "#747D8C";
-          ctx.textAlign = "center";
+            // 画月份文字
+            ctx.fillStyle = "#747D8C";
+            ctx.textAlign = "center";
 
-          // 设置字体粗细，大小，字体名
-          ctx.font = "300 12px sans-serif";
-          // 在柱体中间位置开始画文字
-          ctx.fillText(months[i], x + width / 2, y + maxHeight + 20);
+            // 设置字体粗细，大小，字体名
+            ctx.font = "300 12px sans-serif";
+            // 在柱体中间位置开始画文字
+            ctx.fillText(months[i], x + width / 2, y + maxHeight + 20);
         }
-      }
+    }
 
-      // 画柱子
-      function drawBar(ctx, x, y, width, height1, height2, radius) {
+    // 画柱子
+    function drawBar(ctx, x, y, width, height1, height2, radius) {
         ctx.beginPath();
         // 上半部分，四条边，两个圆角
         ctx.moveTo(x, y);
@@ -115,11 +117,11 @@
         ctx.arcTo(x, y - height1, x + radius, y - height1, radius);
         ctx.lineTo(x + width - radius, y - height1);
         ctx.arcTo(
-          x + width,
-          y - height1,
-          x + width,
-          y - height1 + radius,
-          radius
+            x + width,
+            y - height1,
+            x + width,
+            y - height1 + radius,
+            radius
         );
         ctx.lineTo(x + width, y);
         ctx.lineTo(x, y);
@@ -133,17 +135,17 @@
         ctx.arcTo(x, y + height2, x + radius, y + height2, radius);
         ctx.lineTo(x + width - radius, y + height2);
         ctx.arcTo(
-          x + width,
-          y + height2,
-          x + width,
-          y + height2 - radius,
-          radius
+            x + width,
+            y + height2,
+            x + width,
+            y + height2 - radius,
+            radius
         );
         ctx.lineTo(x + width, y);
         ctx.lineTo(x, y);
         ctx.fillStyle = "#54A0FF";
         ctx.fill();
-      }
-    </script>
-  </body>
+    }
+</script>
+</body>
 </html>
